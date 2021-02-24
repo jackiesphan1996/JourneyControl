@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Pages/Shared/AdminLTE/_Layout.cshtml";
+}
+
+@model IEnumerable<JourneyControl.Infrastructure.Persistence.Entities.SupplyChain.BasketMovement>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>Code</td>
+            <td>Name</td>
+            <td>Text</td>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.BasketMovementDate</td>
+                    <td>@item.BasketMovementNumber</td>
+                    <td>@item.BasketMovementType</td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>

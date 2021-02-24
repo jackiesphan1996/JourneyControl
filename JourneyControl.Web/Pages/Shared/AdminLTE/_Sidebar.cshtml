@@ -1,0 +1,150 @@
+﻿@using JourneyControl.Infrastructure.Identity.Models;
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+<aside class="main-sidebar elevation-2 sidebar-light-primary">
+    <!-- Brand Logo -->
+    <a href="/" class="brand-link">
+        <img src="~/img/codewithmukesh_logo.jpg"
+             alt="AdminLTE Logo"
+             class="brand-image img-circle elevation-0"
+             style="opacity: .8">
+        <div>
+            <span class="brand-text font-weight-light">Hello world</span>
+        </div>
+
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user (optional) -->
+        @if (SignInManager.IsSignedIn(User))
+        {
+
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+
+                <div class="info">
+                    <a href="#" class="d-block">
+                        @{
+                            if (User.IsInRole("SuperAdmin"))
+                            {
+                                <span class="badge badge-danger">Quản lí</span>
+                            }
+                            else if (User.IsInRole("Basic"))
+                            {
+                                <span class="badge badge-success">Nhân viên XN</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-success">Thu ngân</span>
+                            }
+                        }
+                    </a>
+                </div>
+            </div>
+        }
+
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+                with font-awesome or any other icon font library -->
+                @*@{
+                    if (User.IsInRole("SuperAdmin"))
+                    {
+                        <li class="nav-header">QUẢN TRỊ BẢO MẬT</li>
+                        <li class="nav-item">
+                            <a asp-controller="Dashboard" asp-action="Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Thống kê</p>
+                            </a>
+                        </li>
+                        
+                    }
+                }*@
+                <li class="nav-item">
+                    <a asp-controller="Home" asp-action="Index" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Quản lí vị tí</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a asp-controller="BasketMovement" asp-action="Index" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Quản lí Basket Movement</p>
+                    </a>
+                </li>
+                
+                @*<li class="nav-item">
+                    <a asp-controller="LabTest" asp-action="Index" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Quản lí loại xét nghiệm</p>
+                    </a>
+                </li>*@
+
+                @*<li class="nav-item has-treeview">
+                    <a is-active-page asp-area="Mail" asp-page="/Compose" class="nav-link">
+                        <i class="nav-icon fas fa-mail-bulk"></i>
+                        <p>
+                            Mail
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a is-active-page asp-area="Mail" asp-page="/Compose" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Compose Mail</p>
+                            </a>
+                        </li>
+                    </ul>*@
+
+                    @*<ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-controller="Patient" asp-action="Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Quản lí bệnh nhân</p>
+                            </a>
+                        </li>
+                    </ul>*@
+                </li>
+                <li class="nav-header">Settings</li>
+                <li class="nav-item">
+                    <a is-active-page asp-area="Identity" asp-page="/Account/Manage/Index" class="nav-link">
+                        <i class="nav-icon fas fa-cogs"></i>
+                        <p>
+                            Cập nhật thông tin cá nhân
+                        </p>
+                    </a>
+                </li>
+                @{
+                    if (User.IsInRole("SuperAdmin"))
+                    {
+                        <li class="nav-header">QUẢN TRỊ BẢO MẬT</li>
+                        <li class="nav-item">
+                            <a is-active-page asp-area="Identity" asp-page="/Account/Users" class="nav-link">
+                                <i class="nav-icon fas fa-users-cog"></i>
+                                <p>
+                                    Quản lí người dùng
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a is-active-page asp-area="Identity" asp-page="/Account/Roles" class="nav-link">
+                                <i class="nav-icon fas fa-user-lock"></i>
+                                <p>
+                                    Quản lí nhóm quyền
+                                </p>
+                            </a>
+                        </li>
+                    }
+                }
+
+
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

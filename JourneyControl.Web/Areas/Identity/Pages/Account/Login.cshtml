@@ -1,0 +1,129 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Đăng nhập";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Đăng nhập</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <partial name="AdminLTE/_Styles" />
+</head>
+<body class="hold-transition login-page" style="background: white!important;">
+    <div class="login-box">
+        <div class="login-logo">
+        </div>
+            <!-- /.login-logo -->
+            <div class="card">
+                <div class="card-body login-card-body">
+                    <p class="login-box-msg">Đăng nhập để bắt đầu phiên làm việc</p>
+
+                    <form id="account" method="post">
+                        <small> <span asp-validation-for="Input.Email" class="text-danger"></span></small>
+                        <div class="input-group mb-3">
+                            <input asp-for="Input.Email" class="form-control" placeholder="Email / Username">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-envelope"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <small> <span asp-validation-for="Input.Password" class="text-danger"></span></small>
+                        <div class="input-group mb-3">
+                            <input asp-for="Input.Password" type="password" class="form-control" placeholder="Password">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="icheck-primary">
+                                    <label  style="padding: 0px!important;">
+                                        <input asp-for="Input.RememberMe" />
+                                        Lưu giữ kết nối
+                                    </label>
+                                </div>
+                            </div>
+                            <br>
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <!-- /.col -->
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                    </form>
+                    @{
+                        if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                        {
+
+                        }
+                        else
+                        {
+                            <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                                <div id="socialLoginList">
+                                    &nbsp;&nbsp;&nbsp;
+                                    <p>
+                                        @foreach (var provider in Model.ExternalLogins)
+                                        {
+                                            var imageSrc = "";
+                                            switch (provider.DisplayName)
+                                            {
+                                                case "Google":
+                                                    imageSrc = "https://img.icons8.com/fluent/48/000000/google-logo.png";
+                                                    break;
+                                                case "Facebook":
+                                                    imageSrc = "https://www.flaticon.com/premium-icon/icons/svg/2504/2504903.svg";
+                                                    break;
+                                                case "Microsoft":
+                                                    imageSrc = "https://www.flaticon.com/svg/static/icons/svg/732/732221.svg";
+                                                    break;
+                                            }
+
+                                            <button style="margin-left: 10px" id="@($"link-login-button-{provider.Name}")" type="submit" class="btn" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"><img src="@imageSrc" style="width: 20px" />&nbsp; @provider.DisplayName</button>
+
+                                        }
+                                    </p>
+                                </div>
+                            </form>
+                        }
+                    }
+
+                </div>
+
+
+            </div>
+            <!-- /.login-card-body -->
+            <!--<div style="text-align: -webkit-center;">
+                <div class="alert alert-success">
+                    Tài khoản Demo cho Quản trị viên superadmin@gmail.com / Tedu@12345-->
+                    @*Default Basic User Credentials – basic@gmail.com / 123Pa$$word.*@
+                <!--</div>
+                <br />-->
+                @*<p class="mb-1">
+                    <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                </p>
+                <p class="mb-0">
+                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                </p>*@
+                <!--<br />
+                <small style="font-size:15px"> Made with <span style="color: #e25555;">&hearts;</span> by <a href="#">PHAN NHẬT HOÀNG - 0946.848.036</a> </small>
+
+            </div>-->
+        </div>
+    <partial name="AdminLTE/_Scripts" />
+
+</body>
+</html>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

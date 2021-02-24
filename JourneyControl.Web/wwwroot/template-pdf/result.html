@@ -1,0 +1,42 @@
+﻿
+<div id="content" class="Section1">
+    <p style="text-align: center;">
+        <strong>PH&Ograve;NG KH&Aacute;M ĐA KHOA HƯƠNG B&Igrave;NH&nbsp;</strong>
+        <br />
+        Địa chỉ: Đường H&ugrave;ng Vương - Thị Trấn Kiến Giang - Lệ Thủy - Quảng Bình
+        <br />
+        ĐT: 0982.961.769/ 0913 058 769&nbsp;
+    </p>
+    <p style="margin-left: 60px; padding-top: 5px">
+        Họ và tên:
+        <strong>{{PatientName}}</strong>&nbsp; &nbsp; &nbsp;Tuổi: {{Age}} &nbsp; &nbsp;Giới tính: {{Gender}}&nbsp;
+        <br />
+        Địa chỉ: {{HomeAddress}}
+        <br />
+        Chẩn đoán: Khám SK
+        <br />
+        Ngày xét nghiệm: {{CreatedDate}}
+    </p>
+    <p style="text-align: center;">
+        <strong>
+            <span style="font-size: 18px;">KẾT QUẢ XÉT NGHIỆM</span>
+        </strong>
+    </p>
+    <table class="fr-alternate-rows" style="width: 100%; margin-left: calc(0%); margin-right: calc(0%); ">
+        <thead>
+        <tr>
+            <th style="width: 33.3617%; text-align: center;">Chỉ số</th>
+            <th style="width: 34.0708%; text-align: center;">Kết quả</th>
+            <th style="text-align: center; vertical-align: middle; width: 32.8177%;">Gi&aacute; trị trung b&igrave;nh</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{LabTestDetails}}
+        </tbody>
+    </table>
+    <div style="font-size: 12px">
+        {{Comment}}
+    </div>
+
+    <p style="text-align: center; font-size: 13px">BÁC SĨ KHÁM BỆNH  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;TRƯỞNG PHÒNG XÉT NGHIỆM </p>
+</div>
